@@ -7,6 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './containers/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { TagsComponent } from './components/tags/tags.component';
+import { FoodDetailsComponent } from './containers/food-details/food-details.component';
+import { CartComponent } from './containers/cart/cart.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { TitleComponent } from './components/title/title.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { TagsComponent } from './components/tags/tags.component';
     HeaderComponent,
     HomeComponent,
     SearchComponent,
-    TagsComponent
+    TagsComponent,
+    FoodDetailsComponent,
+    CartComponent,
+    NotFoundComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,

@@ -2,18 +2,17 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    & a {
+        background: #f0f0f0;
+        padding: 0.3rem 1rem;
+        margin: 0.2rem 0.15rem;
+        border-radius: 10rem;
+        font-weight: 600;
+        color: #3134eb;
+    }
+    & a:hover {
+        background: #3134eb;
+        color: #f0f0f0;
+    }
 }
-
-.tags-container a {
-    background: #f0f0f0;
-    padding: 0.3rem 1rem;
-    margin: 0.2rem 0.15rem;
-    border-radius: 10rem;
-    font-weight: 600;
-    color: #3134eb;
-}
-
-.tags-container a:hover {
-    background: #3134eb;
-    color: #f0f0f0;
-}
+ 
