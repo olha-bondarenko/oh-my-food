@@ -19,7 +19,8 @@ export class FoodDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if (params['id']) this.food = this.service.getFoodById(params['id']);
+      if (params['id']) 
+      this.service.getFoodById(params['id']).subscribe(data => this.food = data);
     })
   }
 
