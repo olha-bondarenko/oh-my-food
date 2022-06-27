@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,27 +10,38 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 })
 export class LoginPageComponent implements OnInit {
 
-  loginForm!: UntypedFormGroup;
+  form!: UntypedFormGroup;
   isSubmitted = false;
+  returnUrl = '';
 
-  constructor(private fb: UntypedFormBuilder) { }
+  constructor(private fb: UntypedFormBuilder, 
+    private service: UserService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
-    })
+    });
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
+    console.log(this.form)
   }
 
   get fc() {
-    return this.loginForm.controls;
+    return this.form.controls;
   }
 
   submit(){
+    console.log(this.form)
     this.isSubmitted = true;
-    if(this.loginForm.invalid) return;
+    if(this.form.invalid) return;
 
-    alert(`email: ${this.fc['email'].value},
-     password: ${this.fc['password'].value}`)
+    this.service.login({
+      email: this.fc['email'].value,
+      password: this.fc['password'].value}).subscribe(() => {
+      this.router.navigateByUrl(this.returnUrl);
+    });
   }
 }
