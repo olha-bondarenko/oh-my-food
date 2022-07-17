@@ -26,7 +26,6 @@ export class LoginPageComponent implements OnInit {
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
-    console.log(this.form)
   }
 
   get fc() {
@@ -34,7 +33,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.form)
     this.isSubmitted = true;
     if(this.form.invalid) return;
 

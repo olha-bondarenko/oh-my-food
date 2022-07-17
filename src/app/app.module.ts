@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -18,7 +18,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputComponent } from './components/input/input.component';
 import { InputValidationComponent } from './components/input-validation/input-validation.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
-import { ButtonComponent } from './components/button/button.component'
+import { ButtonComponent } from './components/button/button.component';
+import { RegisterComponent } from './containers/register/register.component';
+import { LoadingComponent } from './components/loading/loading.component'
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
+import { CheckoutComponent } from './containers/checkout/checkout.component';
+import { OrderItemsListComponent } from './components/order-items-list/order-items-list.component';
+import { MapComponent } from './components/map/map.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +42,12 @@ import { ButtonComponent } from './components/button/button.component'
     InputComponent,
     InputValidationComponent,
     TextInputComponent,
-    ButtonComponent
+    ButtonComponent,
+    RegisterComponent,
+    LoadingComponent,
+    CheckoutComponent,
+    OrderItemsListComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +61,10 @@ import { ButtonComponent } from './components/button/button.component'
       newestOnTop: false
     })
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
