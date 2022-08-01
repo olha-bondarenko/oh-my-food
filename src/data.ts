@@ -1,3 +1,7 @@
+import { Cart } from "./app/shared/models/cart"
+import { CartItem } from "./app/shared/models/cart-item"
+import { Food } from "./app/shared/models/food"
+import { Order } from "./app/shared/models/order"
 
 export const sample_foods: any[] = [
     {
@@ -78,3 +82,46 @@ export const sample_tags: any[] = [
     { name: 'Fry', count: 1 },
     { name: 'Soup', count: 1 }
 ]
+
+export const sample_cart_item: any = {
+    food: sample_foods[1],
+    price: 40,
+    quantity: 2
+}
+
+export const sample_cart: Cart = {
+    items: [sample_cart_item],
+    totalCount: 1,
+    totalPrice: 20
+}
+
+export const sample_order = {
+    address: 'test address',
+    addressLatLng: {lat: 51.914521, lng: 4.4498882},
+    createdAt: '2022-07-31T20:29:24.254Z',
+    id: 2,
+    items: [sample_cart_item],
+    name: 'test',
+    status: 'NEW',
+    totalPrice: 20,
+    updatedAt: '2022-07-31T20:29:24.254Z',
+    user: '123',
+    paymentId: '123'
+}
+
+export const sample_user = {
+    address: 'Test address',
+    email: 'test@email.com',
+    id: '2',
+    isAdmin: false,
+    name: 'test',
+    token: '123'
+}
+
+export const sample_register_user = {
+    address: 'Test address',
+    confirmPassword: '1234567',
+    email: 'test@email.com',
+    name: 'test',
+    password: '1234567'
+}

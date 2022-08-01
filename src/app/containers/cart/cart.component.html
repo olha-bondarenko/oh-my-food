@@ -1,4 +1,6 @@
-<app-title title="Cart"></app-title>
+<div class="title">
+    <app-title title="Cart"></app-title>
+</div>
 <app-not-found [visible]="!cart || !cart.items.length" [notFoundMessage]="'Cart Is Empty!'" [resetLinkText]="'Go To Homepage'"></app-not-found>
 <div class="container" *ngIf="cart?.items?.length">
     <ul>

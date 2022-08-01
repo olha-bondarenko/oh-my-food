@@ -1,5 +1,7 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
+import { disableDebugTools } from '@angular/platform-browser';
 import { Map, map, LatLngTuple, tileLayer, icon, Marker, LatLngExpression, marker, LeafletMouseEvent, LatLng } from 'leaflet';
+import { tap } from 'rxjs';
 import { LocationService } from 'src/app/services/location.service';
 import { Order } from 'src/app/shared/models/order';
 
@@ -8,8 +10,9 @@ import { Order } from 'src/app/shared/models/order';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnChanges {
   @Input() order!: Order
+  @Input() readonly = false;
   private readonly MARKER_ZOOM_LEVEL = 16;
   private readonly MARKER_ICON = icon({
     iconUrl: 'assets/marker.png',
@@ -25,8 +28,28 @@ export class MapComponent implements OnInit {
    
   constructor(private service: LocationService) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    if(!this.order) return;
     this.initMap();
+
+    if(this.readonly && this.addressLatLng) {
+      this.showLocationOnReadonlyMode();
+    }
+  }
+  showLocationOnReadonlyMode() {
+    const map = this.map;
+    this.setMarker(this.addressLatLng);
+    map.setView(this.addressLatLng, this.MARKER_ZOOM_LEVEL);
+
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+    map.off('click');
+    map.scrollWheelZoom.disable();
+    map.doubleClickZoom.disable();
+    map.tap?.disable();
+    this.currentMarker.dragging?.disable();
   }
 
   initMap() {
@@ -70,8 +93,14 @@ export class MapComponent implements OnInit {
   }
 
   set addressLatLng(latlng: LatLng) {
+
+    if (!latlng.lat.toFixed) return;
     latlng.lat = parseFloat(latlng.lat.toFixed(8));
     latlng.lng = parseFloat(latlng.lng.toFixed(8));
     this.order.addressLatLng = latlng;
+  }
+
+  get addressLatLng(){
+    return this.order.addressLatLng!;
   }
 }

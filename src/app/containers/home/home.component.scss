@@ -1,12 +1,15 @@
-ul {
+.food-list-container {
   display: flex;
   justify-content: center;
+}
+ul {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   list-style-type: none;
-  padding: 0;
 }
-  
+
 li a {
   height: 22.5rem;
   width: 20rem;

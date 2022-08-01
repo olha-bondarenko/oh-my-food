@@ -11,5 +11,5 @@ export class Order {
     paymentId!: string;
     createdAt!: string;
     status!: string;
-
+    user!: string;
 }

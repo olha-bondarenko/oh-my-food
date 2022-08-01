@@ -8,7 +8,7 @@ import { Food } from '../shared/models/food';
   providedIn: 'root'
 })
 export class CartService {
-  private cart: Cart = this.getCartFromLocalStorage();
+  cart: Cart = this.getCartFromLocalStorage();
   private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart );
 
   constructor() { }
@@ -22,7 +22,7 @@ export class CartService {
 
   removeFromCart(foodId: string): void {
     this.cart.items = this.cart.items.filter(item => item.food.id !== foodId);
-    this.setCartToLocalStorage();
+    return this.setCartToLocalStorage();
   }
 
   changeQuantity(foodId: string, quantity: number) {
@@ -35,7 +35,7 @@ export class CartService {
 
   clearCart() {
     this.cart = new Cart();
-    this.setCartToLocalStorage();
+    return this.setCartToLocalStorage();
   }
 
   getCartObservable():Observable<Cart> {
