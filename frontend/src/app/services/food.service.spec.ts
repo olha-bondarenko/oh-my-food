@@ -17,7 +17,7 @@ describe('FoodService', () => {
       ]
     });
     service = TestBed.inject(FoodService);
-    httpTestingController = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController)
   });
 
   it('should be created', () => {

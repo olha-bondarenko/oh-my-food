@@ -7,12 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-  @Input() type: 'submit' | 'button' = 'submit';
+  @Input() type: 'submit' | 'utton' = 'submit';
   @Input() text: string = 'Submit';
   @Input() bgColor = '#3134eb';
   @Input() color = 'white';
   @Input() fontSizeRem = 1.3;
   @Input() widthRem = 12;
+  @Output() onClick = new EventEmitter();
 
   constructor() { }
 
