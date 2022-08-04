@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { sample_cart, sample_cart_item, sample_foods } from 'src/data';
+import { sample_basic_cart, sample_cart, sample_cart_item, sample_foods } from 'src/data';
 import { Cart } from '../shared/models/cart';
 import { CartItem } from '../shared/models/cart-item';
 
@@ -23,11 +23,7 @@ describe('CartService', () => {
     service = TestBed.inject(CartService);
     cart = service.cart;
     cartItem = sample_cart_item;
-    basicCart = {
-      items: [],
-      totalCount: 0,
-      totalPrice: 0
-    };
+    basicCart = sample_basic_cart;
   });
 
   it('should be created', () => {

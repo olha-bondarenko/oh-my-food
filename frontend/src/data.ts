@@ -125,3 +125,9 @@ export const sample_register_user = {
     name: 'test',
     password: '1234567'
 }
+
+export const sample_basic_cart = {
+    items: [],
+    totalCount: 0,
+    totalPrice: 0
+  };
