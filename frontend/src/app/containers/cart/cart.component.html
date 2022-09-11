@@ -1,7 +1,7 @@
 <div class="title">
     <app-title title="Cart"></app-title>
 </div>
-<app-not-found [visible]="!cart || !cart.items.length" [notFoundMessage]="'Cart Is Empty!'" [resetLinkText]="'Go To Homepage'"></app-not-found>
+<app-not-found [visible]="!cart || !cart.items.length" [notFoundMessage]="'Cart Is Empty!'" [resetLinkText]="'Search for food'"></app-not-found>
 <div class="container" *ngIf="cart?.items?.length">
     <ul>
         <li *ngFor="let item of cart.items">

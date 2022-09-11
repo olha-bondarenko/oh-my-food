@@ -15,7 +15,6 @@ router.get("/seed", asyncHandler (
             res.send("Seed is already done!")
             return;
         }
-
         await UserModel. create(sample_users);
         res.send("Seed is Done!")
     })
