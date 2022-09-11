@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import cors from 'cors';
+const cors = require('cors');
 import path from 'path';
 import express from "express";
 import foodRouter from './routers/food.router';
